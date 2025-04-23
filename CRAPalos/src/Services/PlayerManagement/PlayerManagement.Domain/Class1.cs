@@ -1,7 +1,6 @@
-﻿namespace PlayerManagement.Domain
-{
-    public class Class1
-    {
+﻿namespace PlayerManagement.Domain;
 
-    }
+public class Class1
+{
+
 }

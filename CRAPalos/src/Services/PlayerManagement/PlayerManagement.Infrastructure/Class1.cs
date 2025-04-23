@@ -1,7 +1,6 @@
-﻿namespace PlayerManagement.Infrastructure
-{
-    public class Class1
-    {
+﻿namespace PlayerManagement.Infrastructure;
 
-    }
+public class Class1
+{
+
 }
