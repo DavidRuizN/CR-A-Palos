@@ -1,7 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Design;
-
-namespace Common.Infrastructure.Database;
+﻿namespace Common.Infrastructure.Database;
 
 public class DbContextFactory : IDesignTimeDbContextFactory<TicketsDbContext>
 {

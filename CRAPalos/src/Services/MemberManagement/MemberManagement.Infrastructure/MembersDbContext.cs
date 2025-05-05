@@ -3,23 +3,22 @@ using MediatR;
 using MemberManagement.Infrastructure.EntityConfigurations;
 using Microsoft.EntityFrameworkCore;
 
-namespace MemberManagement.Infrastructure
+namespace MemberManagement.Infrastructure;
+
+public class MembersDbContext : BaseContext
 {
-    public class MembersDbContext : BaseContext
+    public MembersDbContext(DbContextOptions<MembersDbContext> options) : base(options)
     {
-        public MembersDbContext(DbContextOptions<MembersDbContext> options) : base(options)
-        {
-        }
+    }
 
-        public MembersDbContext(DbContextOptions options, IMediator mediator) : base(options, mediator)
-        {
-        }
+    public MembersDbContext(DbContextOptions options, IMediator mediator) : base(options, mediator)
+    {
+    }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.ApplyConfiguration(new MemberEntityConfiguration());
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.ApplyConfiguration(new MemberEntityConfiguration());
 
-            base.OnModelCreating(modelBuilder);
-        }
+        base.OnModelCreating(modelBuilder);
     }
 }

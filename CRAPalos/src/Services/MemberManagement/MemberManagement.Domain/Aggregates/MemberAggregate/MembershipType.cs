@@ -1,9 +1,8 @@
-﻿namespace MemberManagement.Domain.Aggregates.MemberAggregate
+﻿namespace MemberManagement.Domain.Aggregates.MemberAggregate;
+
+public enum MembershipType
 {
-    public enum MembershipType
-    {
-        Member,
-        Fan,
-        Player
-    }
+    Member,
+    Fan,
+    Player
 }
