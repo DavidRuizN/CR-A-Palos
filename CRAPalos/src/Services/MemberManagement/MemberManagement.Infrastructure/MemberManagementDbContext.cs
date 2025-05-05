@@ -1,17 +1,12 @@
 ﻿using Common.Infrastructure.Database;
-using MediatR;
 using MemberManagement.Infrastructure.EntityConfigurations;
 using Microsoft.EntityFrameworkCore;
 
 namespace MemberManagement.Infrastructure;
 
-public class MembersDbContext : BaseContext
+public class MemberManagementDbContext : BaseContext
 {
-    public MembersDbContext(DbContextOptions<MembersDbContext> options) : base(options)
-    {
-    }
-
-    public MembersDbContext(DbContextOptions options, IMediator mediator) : base(options, mediator)
+    public MemberManagementDbContext(DbContextOptions<MemberManagementDbContext> options) : base(options)
     {
     }
 

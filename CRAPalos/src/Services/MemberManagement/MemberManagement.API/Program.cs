@@ -1,19 +1,35 @@
+using MemberManagement.API.Extensions;
+using MemberManagement.Infrastructure;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+builder.Host.ConfigureSerilog(builder.Configuration); // Configurar Serilog
 
+builder.Services.ConfigureDatabase(builder.Configuration); // Configurar BBDD
+
+// Registrar servicios
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-var app = builder.Build();
+builder.Services.InyectDependencies(builder.Configuration); // Inyección de dependencias
 
-// Configure the HTTP request pipeline.
+var app = builder.Build();
+Log.Information("MemberManagement.API iniciado correctamente");
+
+// Ejecutar migraciones automáticamente
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<MemberManagementDbContext>();
+    dbContext.Database.Migrate();
+}
+
+// Configurar el pipeline HTTP
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -21,9 +37,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
+
+Log.Information("MemberManagement.API está escuchando en la URL {Url}", app.Configuration["ASPNETCORE_URLS"]);
 
 app.Run();

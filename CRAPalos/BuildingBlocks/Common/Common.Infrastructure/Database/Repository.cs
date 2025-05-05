@@ -28,7 +28,7 @@ public class Repository<TModel> : IRepository<TModel> where TModel : class
         return null;
     }
 
-    public virtual async Task<TModel> GetByIDAsync(params object[] id)
+    public virtual async Task<TModel> GetByIdAsync(params object[] id)
     {
         var totalInLocal = Set.Local.Count;
         TModel model = await Set.FindAsync(id).ConfigureAwait(false);
@@ -95,5 +95,5 @@ public class Repository<TModel> : IRepository<TModel> where TModel : class
         return await Set.AsNoTracking().ToListAsync();
     }
 
-    #endregion
+    #endregion IDisposable Support
 }

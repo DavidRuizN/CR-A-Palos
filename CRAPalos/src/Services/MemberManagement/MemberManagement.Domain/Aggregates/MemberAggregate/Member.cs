@@ -16,6 +16,12 @@ public class Member : Entity<Guid>
     public byte[] ProfilePicture { get; private set; }
     public DateTime CreatedAt { get; private set; }
     public DateTime? UpdatedAt { get; private set; }
+    public MembershipPayment MembershipPayment { get; private set; }
+
+    private Member()
+    {
+        // EF Core requires a parameterless constructor for materialization
+    }
 
     private Member(Name name, Surnames surnames, Address address, PhoneNumber phoneNumber, Email email, DateTime birthDate,
         DNI dni, MembershipType type)
@@ -40,6 +46,20 @@ public class Member : Entity<Guid>
     public void UpdateProfilePicture(byte[] picture)
     {
         ProfilePicture = picture;
+        UpdatedAt = DateTime.UtcNow;
+    }
+
+    public void Update(Name name, Surnames surnames, Address address, PhoneNumber phoneNumber, Email email, DateTime birthDate,
+        DNI dni, MembershipType type)
+    {
+        Name = name;
+        Surnames = surnames;
+        Address = address;
+        PhoneNumber = phoneNumber;
+        Email = email;
+        BirthDate = birthDate;
+        DNI = dni;
+        Type = type;
         UpdatedAt = DateTime.UtcNow;
     }
 }

@@ -1,0 +1,58 @@
+### Get member by Id
+GET {{host}}/{{version}}/members/e8e3fc9c-0515-4071-9f07-08dd8c1f817d
+Accept: application/json
+# Authorization: Bearer {{access_token}}
+
+### Get all members
+GET {{host}}/{{version}}/members
+Accept: application/json
+# Authorization: Bearer {{access_token}}
+
+### Post
+POST {{host}}/{{version}}/members
+Content-Type: application/json
+# Authorization: Bearer {{access_token}}
+{
+  "Name": "David",
+  "Surnames": "Ruiz Núñez",
+  "PhoneNumber": "969222111",
+  "Email": "davichenkoyt@gmail.com",
+  "Address": {
+      "Street": "Gerardo Diego",
+      "Number": "2",
+      "AdditionalInformation": "Bajo A",
+      "ZipCode": "16004",
+      "Town": "Cuenca",
+      "CountryName": "España"
+  },  
+  "BirthDate": "2001-12-14T00:00:00.000Z",
+  "DNI": "04655789O",
+  "Type": 1
+}
+
+### Put
+PUT {{host}}/{{version}}/members/123182389123898u9
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+{
+  "Name": "Paco",
+  "Surnames": "Pérez Sanchez",
+  "PhoneNumber": "969222111",
+  "Email": "prueba@prueba.com",
+  "Address": {
+      "Street": "Gerardo Diego",
+      "Number": "2",
+      "AdditionalInformation": "Cuarto A",
+      "ZipCode": "16004",
+      "Town": "Cuenca",
+      "CountryName": "España"
+  },  
+  "BirthDate": "2001-12-14T00:00:00.000Z",
+  "DNI": "04655789O",
+  "Type": 1
+}
+
+### Delete
+DELETE {{host}}/{{version}}/members/bebe8398-534b-4797-1848-08dd8c20180b
+Accept: application/json
+# Authorization: Bearer {{access_token}}

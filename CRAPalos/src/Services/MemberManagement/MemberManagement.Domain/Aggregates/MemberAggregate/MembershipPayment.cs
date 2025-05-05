@@ -12,6 +12,11 @@ public class MembershipPayment : Entity<Guid>
     public PaymentStatus Status { get; private set; }
     public DateTime CreatedAt { get; private set; }
 
+    private MembershipPayment()
+    {
+        // EF Core requires a parameterless constructor for materialization
+    }
+
     private MembershipPayment(Guid memberId, double amount, DateTime? paidAt, PaymentMethod method, PaymentStatus status)
     {
         MemberId = memberId;

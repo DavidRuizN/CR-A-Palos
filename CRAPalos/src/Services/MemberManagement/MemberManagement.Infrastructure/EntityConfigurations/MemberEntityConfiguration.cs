@@ -26,9 +26,9 @@ public class MemberEntityConfiguration : IEntityTypeConfiguration<Member>
         AddressEntityConfiguration.Configure(builder, s => s.Address, nameof(Member.Address));
 
         builder.Property(m => m.Email)
-            .HasConversion(new ValueConverter<PhoneNumber, string>(n => n, Value => PhoneNumber.Create(Value)))
-            .IsRequired(PhoneNumber.Description.REQUIRED)
-            .HasMaxLength(PhoneNumber.Description.MAX_LENGTH);
+            .HasConversion(new ValueConverter<Email, string>(n => n, Value => Email.Create(Value)))
+            .IsRequired(Email.Description.REQUIRED)
+            .HasMaxLength(Email.Description.MAX_LENGTH);
 
         builder.Property(m => m.PhoneNumber)
             .HasConversion(new ValueConverter<PhoneNumber, string>(n => n, Value => PhoneNumber.Create(Value)))
@@ -48,5 +48,10 @@ public class MemberEntityConfiguration : IEntityTypeConfiguration<Member>
 
         builder.Property(m => m.CreatedAt).IsRequired();
         builder.Property(m => m.UpdatedAt);
+
+        builder.HasOne(m => m.MembershipPayment)
+            .WithOne()
+            .HasForeignKey<MembershipPayment>(mp => mp.MemberId)
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }

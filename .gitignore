@@ -94,3 +94,4 @@ bld/
 msbuild.log
 msbuild.err
 msbuild.wrn
+CRAPalos/src/Services/MemberManagement/MemberManagement.API/logs/
