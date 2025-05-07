@@ -1,0 +1,49 @@
+﻿@page
+@model MembersModel
+@{
+    ViewData["Title"] = "Members";
+}
+
+<h1>Members</h1>
+
+<table id="membersTable" class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Surnames</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>DNI</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var member in Model.Members)
+        {
+            <tr>
+                <td>@member.Name</td>
+                <td>@member.Surnames</td>
+                <td>@member.PhoneNumber</td>
+                <td>@member.Email</td>
+                <td>@member.DNI</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    $(document).ready(function () {
+        $('#membersTable').DataTable({
+            // Enable column visibility controls
+            dom: 'Bfrtip',
+            buttons: [
+                'colvis' // Column visibility button
+            ],
+            order: [[0, 'asc']], // Default sorting by the first column (Name)
+            colReorder: true,
+            language: {
+                url: "https://cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json"
+            },
+            renderer: 'bootstrap'
+        });
+    });
+</script>

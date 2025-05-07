@@ -1,0 +1,83 @@
+﻿@page "/membership-select1"
+@using CRAPalos.App.Application.Commands
+@using CRAPalos.App.Application.Models
+@using CRAPalos.App.Application.Services
+
+@inject IMemberService _memberService
+@inject NavigationManager NavMgr
+
+@rendermode InteractiveServer
+
+<PageTitle>SelectMembership</PageTitle>
+
+<h1>Únete al Club!</h1>
+<br>
+<br>
+<br>
+<br>
+<br>
+ 
+<RadzenRow>
+    <RadzenColumn md="4" sm="12">
+        <RadzenCard Class="pricing-card" >
+            <div class="pricing-header">
+                <h2>Socio</h2>
+                <h1 class="price">€@memberPrice</h1>
+            </div>
+            <ul class="features">
+                <li>Descuentos y promociones</li>
+                <li>Apoyo al club</li>
+            </ul>
+            <RadzenButton Text="Unirse"
+                          ButtonStyle="ButtonStyle.Primary"
+                          Class="join-button"
+                          Click="@(() => NavMgr.NavigateTo("/add-members"))" />
+        </RadzenCard>
+    </RadzenColumn>
+
+    <RadzenColumn md="4" sm="12">
+        <RadzenCard Class="pricing-card highlighted">
+            <div class="pricing-header">
+                <h2>Aficionado</h2>
+                <h1 class="price">€@fanPrice</h1>
+            </div>
+            <ul class="features">
+                <li>Socio del club</li>
+                <li>Derecho a entrenamientos</li>
+                <li>Participación en amistosos y torneos</li>
+            </ul>
+            <RadzenButton Text="Unirse"
+                          ButtonStyle="ButtonStyle.Primary"
+                          Class="join-button"
+                          Click="@(() => NavMgr.NavigateTo("/add-members"))" />
+        </RadzenCard>
+    </RadzenColumn>
+
+    <RadzenColumn md="4" sm="12">
+        <RadzenCard Class="pricing-card">
+            <div class="pricing-header">
+                <h2>Jugador</h2>
+                <h1 class="price">€@playerPrice</h1>
+            </div>
+            <ul class="features">
+                <li>Entrenamientos avanzados</li>
+                <li>Participación en ligas internas</li>
+                <li>Uniforme oficial incluido</li>
+            </ul>
+            <RadzenButton Text="Unirse"
+                          ButtonStyle="ButtonStyle.Primary"
+                          Class="join-button"
+                          Click="@(() => NavMgr.NavigateTo("/add-members"))" />
+        </RadzenCard>
+    </RadzenColumn>
+</RadzenRow>
+
+@code {
+    bool responsive = true;
+    Variant variant = Variant.Filled;
+
+    double memberPrice = 20;  // €20
+    double fanPrice = 100;  // €100
+    double playerPrice = 250; // €250
+}
+

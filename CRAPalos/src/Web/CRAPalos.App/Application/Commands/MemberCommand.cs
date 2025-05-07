@@ -1,16 +1,11 @@
-using Common.API.Models;
-using MediatR;
-using MemberManagement.API.Application.Models;
-using MemberManagement.Domain.Aggregates.MemberAggregate.Enums;
-using System;
+using CRAPalos.App.Application.Models;
+using CRAPalos.App.Application.Models.Enums;
 
-namespace MemberManagement.API.Application.Commands;
+namespace CRAPalos.App.Application.Commands;
 
-public class MemberCommand : IRequest<bool>
+public class MemberCommand
 {
-    public OperationType Operation { get; set; }
     public Guid Id { get; set; }
-
     public string Name { get; set; }
     public string Surnames { get; set; }
     public string PhoneNumber { get; set; }

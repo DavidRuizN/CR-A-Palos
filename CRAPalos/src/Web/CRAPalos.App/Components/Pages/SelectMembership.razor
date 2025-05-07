@@ -1,0 +1,146 @@
+﻿@page "/membership-select"
+@using CRAPalos.App.Application.Commands
+@using CRAPalos.App.Application.Models
+@using CRAPalos.App.Application.Services
+
+@inject IMemberService _memberService
+@inject NavigationManager NavMgr
+
+@rendermode InteractiveServer
+
+<PageTitle>SelectMembership</PageTitle>
+
+<h1>Únete al Club!</h1>
+<br>
+<RadzenCardGroup Responsive="@responsive">
+    @* SOCIOS *@
+    <RadzenRow AlignItems=AlignItems.Center JustifyContent=JustifyContent.Normal Orientation="Orientation.Horizontal" class="rz-mt-12 rz-w-100 rz-w-md-75" Gap="1" RowGap="1">
+        <RadzenColumn class="rz-col-11">
+            <RadzenCard Variant=@variant class="rz-pt-6 rz-border rz-border-radius-4" style="flex: 1;">
+                <RadzenStack AlignItems=AlignItems.Normal JustifyContent=JustifyContent.Normal Orientation="Orientation.Vertical" class="rz-p-6" Gap="0px" style="flex-wrap:nowrap;">
+                    @* Descripcion de la membresía *@
+                    <RadzenText TextStyle="TextStyle.H5">@memberTitle</RadzenText>
+                    <RadzenText TextStyle="TextStyle.Subtitle2" class="rz-text-tertiary-color">@memberDescription</RadzenText>
+                    @* Precio de la cuota *@
+                    <RadzenStack AlignItems=AlignItems.Center JustifyContent=JustifyContent.Center Orientation="Orientation.Horizontal" class="rz-my-6" Gap="0.5rem" style="flex-wrap:nowrap;">
+                        <RadzenText TextStyle="TextStyle.H3">@memberPrice €</RadzenText>
+                        <RadzenText TextStyle="TextStyle.Subtitle2" class="rz-text-tertiary-color rz-m-0">/ Anual</RadzenText>
+                    </RadzenStack>
+                    <RadzenStack AlignItems=AlignItems.Normal JustifyContent=JustifyContent.Normal Orientation="Orientation.Vertical" class="rz-mt-6" Gap="0.5rem" style="flex-wrap:nowrap;">
+                        @* Cada uno de los beneficios de la cuota *@
+                        <RadzenStack AlignItems=AlignItems.Center JustifyContent=JustifyContent.Normal Orientation="Orientation.Horizontal" Gap="0.5rem" style="flex-wrap:nowrap;">
+                            <RadzenIcon Icon="check_circle" />
+                            <RadzenText TextStyle="TextStyle.Subtitle2" class="rz-text-tertiary-color rz-m-0">Descuentos y promociones</RadzenText>
+                        </RadzenStack>
+                        <RadzenStack AlignItems=AlignItems.Center JustifyContent=JustifyContent.Normal Orientation="Orientation.Horizontal" Gap="0.5rem" style="flex-wrap:nowrap;">
+                            <RadzenIcon Icon="check_circle" />
+                            <RadzenText TextStyle="TextStyle.Subtitle2" class="rz-text-tertiary-color rz-m-0">Apoyo al Club</RadzenText>
+                        </RadzenStack>
+                    </RadzenStack>
+                    @* Boton de hacerse socio *@
+                    <RadzenStack AlignItems=AlignItems.Center JustifyContent=JustifyContent.Center Orientation="Orientation.Horizontal" class="rz-my-6" Gap="0.5rem" style="flex-wrap:nowrap;">
+                        <RadzenButton Text="Unirse" ButtonStyle="ButtonStyle.Primary" Class="join-button" Click="@(() => NavMgr.NavigateTo("/members-add"))" />
+                    </RadzenStack>
+                </RadzenStack>
+            </RadzenCard>
+        </RadzenColumn>
+    </RadzenRow>
+    @* AFICIONADOS *@
+    <RadzenRow AlignItems=AlignItems.Center JustifyContent=JustifyContent.Normal Orientation="Orientation.Horizontal" class="rz-mt-12 rz-w-100 rz-w-md-75" Gap="1" RowGap="1">
+        <RadzenColumn class="rz-col-11">
+            <RadzenCard Variant=@variant class="rz-pt-6 rz-border rz-border-radius-4" style="flex: 1;">
+                <RadzenStack AlignItems=AlignItems.Center JustifyContent=JustifyContent.Center class="rz-border rz-border-radius-2" style="flex: 1;background-color: aquamarine;padding: 4px;">
+                    <RadzenText TextStyle="TextStyle.Subtitle2" class="rz-text-tertiary-color rz-m-0">RECOMENDADO</RadzenText>
+                </RadzenStack>
+                <RadzenStack AlignItems=AlignItems.Normal JustifyContent=JustifyContent.Normal Orientation="Orientation.Vertical" class="rz-p-6" Gap="0px" style="flex-wrap:nowrap;">
+                    @* Descripcion de la membresía *@
+                    <RadzenText TextStyle="TextStyle.H5">@fanTitle</RadzenText>
+                    <RadzenText TextStyle="TextStyle.Subtitle2" class="rz-text-tertiary-color">@fanDescription</RadzenText>
+                    @* Precio de la cuota *@
+                        <RadzenStack AlignItems=AlignItems.Center JustifyContent=JustifyContent.Center Orientation="Orientation.Horizontal" class="rz-my-6" Gap="0.5rem" style="flex-wrap:nowrap;">
+                        <RadzenText TextStyle="TextStyle.H3">@fanPrice €</RadzenText>
+                            <RadzenText TextStyle="TextStyle.Subtitle2" class="rz-text-tertiary-color rz-m-0">/ Anual</RadzenText>
+                    </RadzenStack>
+                        <RadzenStack AlignItems=AlignItems.Normal JustifyContent=JustifyContent.Normal Orientation="Orientation.Vertical" class="rz-mt-6" Gap="0.5rem" style="flex-wrap:nowrap;">
+                        @* Cada uno de los beneficios de la cuota *@
+                        <RadzenStack AlignItems=AlignItems.Center JustifyContent=JustifyContent.Normal Orientation="Orientation.Horizontal" Gap="0.5rem" style="flex-wrap:nowrap;">
+                            <RadzenIcon Icon="check_circle" />
+                            <RadzenText TextStyle="TextStyle.Subtitle2" class="rz-text-tertiary-color rz-m-0">Socio del Club</RadzenText>
+                        </RadzenStack>
+                        <RadzenStack AlignItems=AlignItems.Center JustifyContent=JustifyContent.Normal Orientation="Orientation.Horizontal" Gap="0.5rem" style="flex-wrap:nowrap;">
+                            <RadzenIcon Icon="check_circle" />
+                            <RadzenText TextStyle="TextStyle.Subtitle2" class="rz-text-tertiary-color rz-m-0">Derecho a entrenamientos</RadzenText>
+                        </RadzenStack>
+                        <RadzenStack AlignItems=AlignItems.Center JustifyContent=JustifyContent.Normal Orientation="Orientation.Horizontal" Gap="0.5rem" style="flex-wrap:nowrap;">
+                            <RadzenIcon Icon="check_circle" />
+                            <RadzenText TextStyle="TextStyle.Subtitle2" class="rz-text-tertiary-color rz-m-0">Participación en amistosos y torneos</RadzenText>
+                        </RadzenStack>
+                    </RadzenStack>
+                    @* Boton de hacerse socio *@
+                    <RadzenStack AlignItems=AlignItems.Center JustifyContent=JustifyContent.Center Orientation="Orientation.Horizontal" class="rz-my-6" Gap="0.5rem" style="flex-wrap:nowrap;">
+                            <RadzenButton Text="Unirse" ButtonStyle="ButtonStyle.Primary" Class="join-button" Click="@(() => NavMgr.NavigateTo("/members-add"))" />
+                    </RadzenStack>
+                </RadzenStack>
+            </RadzenCard>
+        </RadzenColumn>
+    </RadzenRow>
+    @* JUGADORES *@
+    <RadzenRow AlignItems=AlignItems.Center JustifyContent=JustifyContent.Normal Orientation="Orientation.Horizontal" class="rz-mt-12 rz-w-100 rz-w-md-75" Gap="1rem" RowGap="1rem">
+        <RadzenColumn class="rz-col-11">
+            <RadzenCard Variant=@variant class="rz-pt-6 rz-border rz-border-radius-4" style="flex: 1;">                
+                <RadzenStack AlignItems=AlignItems.Normal JustifyContent=JustifyContent.Normal Orientation="Orientation.Vertical" class="rz-p-6" Gap="0px" style="flex-wrap:nowrap;">
+                    @* Descripcion de la membresía *@
+                    <RadzenText TextStyle="TextStyle.H5">@playerTitle</RadzenText>
+                    <RadzenText TextStyle="TextStyle.Subtitle2" class="rz-text-tertiary-color">@playerDescription</RadzenText>
+                    @* Precio de la cuota *@
+                    <RadzenStack AlignItems=AlignItems.Center JustifyContent=JustifyContent.Center Orientation="Orientation.Horizontal" class="rz-my-6" Gap="0.5rem" style="flex-wrap:nowrap;">
+                        <RadzenText TextStyle="TextStyle.H3">@playerPrice €</RadzenText>
+                        <RadzenText TextStyle="TextStyle.Subtitle2" class="rz-text-tertiary-color rz-m-0">/ Anual</RadzenText>
+                    </RadzenStack>
+                    <RadzenStack AlignItems=AlignItems.Normal JustifyContent=JustifyContent.Normal Orientation="Orientation.Vertical" class="rz-mt-6" Gap="0.5rem" style="flex-wrap:nowrap;">
+                        @* Cada uno de los beneficios de la cuota *@
+                        <RadzenStack AlignItems=AlignItems.Center JustifyContent=JustifyContent.Normal Orientation="Orientation.Horizontal" Gap="0.5rem" style="flex-wrap:nowrap;">
+                            <RadzenIcon Icon="check_circle" />
+                            <RadzenText TextStyle="TextStyle.Subtitle2" class="rz-text-tertiary-color rz-m-0">Socio del Club</RadzenText>
+                        </RadzenStack>
+                        <RadzenStack AlignItems=AlignItems.Center JustifyContent=JustifyContent.Normal Orientation="Orientation.Horizontal" Gap="0.5rem" style="flex-wrap:nowrap;">
+                            <RadzenIcon Icon="check_circle" />
+                            <RadzenText TextStyle="TextStyle.Subtitle2" class="rz-text-tertiary-color rz-m-0">Derecho a entrenamientos</RadzenText>
+                        </RadzenStack>
+                        <RadzenStack AlignItems=AlignItems.Center JustifyContent=JustifyContent.Normal Orientation="Orientation.Horizontal" Gap="0.5rem" style="flex-wrap:nowrap;">
+                            <RadzenIcon Icon="check_circle" />
+                            <RadzenText TextStyle="TextStyle.Subtitle2" class="rz-text-tertiary-color rz-m-0">Participación en amistosos y torneos</RadzenText>
+                        </RadzenStack>
+                        <RadzenStack AlignItems=AlignItems.Center JustifyContent=JustifyContent.Normal Orientation="Orientation.Horizontal" Gap="0.5rem" style="flex-wrap:nowrap;">
+                            <RadzenIcon Icon="check_circle" />
+                            <RadzenText TextStyle="TextStyle.Subtitle2" class="rz-text-tertiary-color rz-m-0">Ficha y seguro federativo</RadzenText>
+                        </RadzenStack>
+                    </RadzenStack>
+                    <RadzenStack AlignItems=AlignItems.Center JustifyContent=JustifyContent.Center Orientation="Orientation.Horizontal" class="rz-my-6" Gap="0.5rem" style="flex-wrap:nowrap;">
+                        <RadzenButton Text="Unirse" ButtonStyle="ButtonStyle.Primary" Class="join-button" Click="@(() => NavMgr.NavigateTo("/members-add"))" />
+                    </RadzenStack>
+                    
+                    @* Añadir boton de ir a hacerse socio *@
+                </RadzenStack>
+            </RadzenCard>
+        </RadzenColumn>
+    </RadzenRow>
+</RadzenCardGroup>
+
+@code {
+    bool responsive = true;
+    Variant variant = Variant.Filled;
+
+    string memberTitle = "Socio"; 
+    string memberDescription = "Descripcion Socio";
+    double memberPrice = 20;  // 20€
+
+    string fanTitle = "Aficionado";
+    string fanDescription = "Descripcion Aficionado";
+    double fanPrice = 100;  // 100€
+
+    string playerTitle = "Jugador";
+    string playerDescription = "Descripcion Jugador";
+    double playerPrice = 250;  // 250€
+}
+

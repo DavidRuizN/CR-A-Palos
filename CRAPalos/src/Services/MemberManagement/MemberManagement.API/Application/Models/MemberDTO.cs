@@ -1,4 +1,4 @@
-﻿using MemberManagement.Domain.Aggregates.MemberAggregate;
+﻿using MemberManagement.Domain.Aggregates.MemberAggregate.Enums;
 using System;
 
 namespace MemberManagement.API.Application.Models;

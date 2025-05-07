@@ -19,6 +19,16 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.InyectDependencies(builder.Configuration); // Inyección de dependencias
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowWebApp", policy =>
+    {
+        policy.WithOrigins("http://localhost:5002;http://localhost:5003") // Replace with Razor Pages project's URL
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
+
 var app = builder.Build();
 Log.Information("MemberManagement.API iniciado correctamente");
 
@@ -36,6 +46,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors("AllowWebApp");
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();

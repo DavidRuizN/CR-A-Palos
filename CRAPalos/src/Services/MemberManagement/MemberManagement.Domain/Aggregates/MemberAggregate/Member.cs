@@ -1,4 +1,5 @@
 ﻿using Common.Domain.Entities;
+using MemberManagement.Domain.Aggregates.MemberAggregate.Enums;
 using MemberManagement.Domain.Aggregates.MemberAggregate.ValueObjects;
 
 namespace MemberManagement.Domain.Aggregates.MemberAggregate;

@@ -1,4 +1,4 @@
-﻿namespace MemberManagement.Domain.Aggregates.MemberAggregate.ValueObjects;
+﻿namespace MemberManagement.Domain.Aggregates.MemberAggregate.Enums;
 
 public enum PaymentMethod
 {

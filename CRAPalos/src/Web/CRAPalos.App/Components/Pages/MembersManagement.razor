@@ -1,0 +1,58 @@
+﻿@page "/members-management"
+@using CRAPalos.App.Application.Models
+@using CRAPalos.App.Application.Services
+
+@inject IMemberService _memberService
+@rendermode InteractiveServer
+
+<PageTitle>MembersManagement</PageTitle>
+
+<h1>Gestión Socios</h1>
+
+@if (MembersList == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <RadzenDataGrid 
+    AllowFiltering="true"
+    AllowColumnResize="true"
+    AllowAlternatingRows="false"
+    AllowColumnPicking="true"
+    ColumnsPickerAllowFiltering="true"
+    AllowColumnReorder="true"
+    FilterMode="FilterMode.Advanced"
+    AllowSorting="true"
+    PageSize="5" 
+    AllowPaging="true" 
+    PagerHorizontalAlign="HorizontalAlign.Left" 
+    ShowPagingSummary="true"
+    Data="@MembersList" ColumnWidth="150px" LogicalFilterOperator="LogicalFilterOperator.Or" SelectionMode="DataGridSelectionMode.Single">
+        <Columns>
+
+            <RadzenDataGridColumn Property="@nameof(MemberDTO.FullName)" Title="Nombre" Frozen="true" Visible=true Pickable=false Reorderable=false/>
+            <RadzenDataGridColumn Property="@nameof(MemberDTO.PhoneNumber)" Title="Teléfono" />
+            <RadzenDataGridColumn Property="@nameof(MemberDTO.Email)" Title="Email" />
+            <RadzenDataGridColumn Property="@nameof(MemberDTO.BirthDate)" Title="Birth Date" FormatString="{0:d}" />
+            <RadzenDataGridColumn Property="@nameof(MemberDTO.DNI)" Title="DNI" FormatString="{0:d}" Visible=false />
+            <RadzenDataGridColumn Property="@nameof(MemberDTO.Type)" Title="Type" />
+            <RadzenDataGridColumn Property="@nameof(AddressDTO.Town)" Title="Town" />
+            <RadzenDataGridColumn Property="@nameof(AddressDTO.Street)" Title="Street" Visible=false />
+            <RadzenDataGridColumn Property="@nameof(AddressDTO.Number)" Title="Number" Visible=false />
+            <RadzenDataGridColumn Property="@nameof(AddressDTO.AdditionalInformation)" Title="AdditionalInformation" Visible=false />
+            <RadzenDataGridColumn Property="@nameof(AddressDTO.ZipCode)" Title="ZipCode" Visible=false />
+            <RadzenDataGridColumn Property="@nameof(AddressDTO.CountryName)" Title="CountryName" Visible=false />
+        </Columns>
+    </RadzenDataGrid>
+}
+
+@code {
+    private IEnumerable<MemberDTO> MembersList = [];
+
+    protected override async Task OnInitializedAsync()
+    {
+        // Llamada al API para obtener los datos
+        MembersList = await _memberService.GetMembersAsync();      
+    }
+}

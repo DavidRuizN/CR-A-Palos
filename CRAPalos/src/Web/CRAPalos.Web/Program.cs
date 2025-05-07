@@ -1,5 +1,10 @@
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddHttpClient("MemberManagementAPI", client =>
+{
+    client.BaseAddress = new Uri("http://localhost:5001/api/v1/"); // TODO: sacar a appsettings
+});
+
 // Add services to the container.
 builder.Services.AddRazorPages();
 

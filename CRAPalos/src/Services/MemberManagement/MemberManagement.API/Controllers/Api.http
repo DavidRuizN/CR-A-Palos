@@ -31,9 +31,9 @@ Content-Type: application/json
 }
 
 ### Put
-PUT {{host}}/{{version}}/members/123182389123898u9
+PUT {{host}}/{{version}}/members/a9dce2db-8737-4dfb-cba3-08dd8c209ed3
 Content-Type: application/json
-Authorization: Bearer {{access_token}}
+# Authorization: Bearer {{access_token}}
 {
   "Name": "Paco",
   "Surnames": "Pérez Sanchez",
